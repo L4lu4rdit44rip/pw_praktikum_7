@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.19.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peraktikum7 | Lalu Ardita</title>
+</head>
+<body>
+        <div class="container">
+            <div class="container-fluid">
+                <img src="https://img.webtech360.com/imagesupdate1/image-webtech360-com-1411340.jpg" width="400" height="300" class="rounded mx-auto d-block " alt="...">
+            <div class="flex justify-center items-center mx-auto mb-5 p-3">
+                <select class="select select-bordered w-full max-w-xs mr-5" id="pilihkabupaten">
+                <option disabled="disabled" selected="selected">Kabupaten</option>
+                <option>Lombok Timur</option>
+                <option>Lombok Tengah</option>
+                <option>Lombok Barat</option>
+                <option>Lombok Utara</option>
+                </select>
+                <select class="select select-bordered w-full max-w-xs" disabled="disabled" id="pilihkecamatan">
+                <option disabled="disabled" selected="selected">Kecamatan</option>
+                </select>
+            </div>
+            <div class="flex justify-center items-center mx-auto mb-5 p-3">
+                <p class="font-medium" id="hasil">Pilih Kabupaten</p>
+            </div>
+                <input type="checkbox" class="toggle mx-auto" id="toggle">
+            </div>
+        </div>
+    </body>
+<script type="text/javascript">
+    const pilihkabupaten = document.querySelector('#pilihkabupaten');
+    const pilihkecamatan = document.querySelector('#pilihkecamatan');
+    const hasil = document.querySelector('#hasil');
+    const toggle = document.querySelector('#toggle');
+    const html = document.querySelector('html');
+
+    const data = {
+    'Lombok Timur' : `
+        <option disabled="disabled" selected="selected">Kecamatan</option>
+        <option>Sukamulia</option>
+        <option>Selong</option>
+        <option>Labuhan Haji</option>
+        <option>Masbagek</option>
+        <option>Sakra</option>
+    `,
+    'Lombok Tengah' : `
+        <option disabled="disabled" selected="selected">Kecamatan</option>
+        <option>Kopang</option>
+        <option>batu keliang</option>
+        <option>Janapria</option>
+        <option>Pringgarata</option>
+        <option>Pujut</option>
+    `,
+    'Lombok Barat' : `
+        <option disabled="disabled" selected="selected">Kecamatan</option>
+        <option>Grung</option>
+        <option>Kediri</option>
+        <option>Labu api</option>
+        <option>Gunung sari</option>
+        <option>Narmada</option>
+    `,
+    'Lombok Utara' : `
+        <option disabled="disabled" selected="selected">Kecamatan</option>
+        <option>Pemenang</option>
+        <option>Tanjung</option>
+        <option>Bayan</option>
+        <option>Kayangan</option>
+        <option>Gangga</option>
+    `,
+    
+    }
+
+    const func_kabupaten = () => {
+    let kabupaten_value = pilihkabupaten.value;
+    pilihkecamatan.removeAttribute('disabled');
+    pilihkecamatan.innerHTML = data[kabupaten_value];
+    hasil.innerText = `Input Pilih Kecamatan`;
+    }
+
+    const func_kecamatan = () => {
+    let kabupaten_value = pilihkabupaten.value;
+    let kecamatan_value = pilihkecamatan.value;
+    hasil.innerText = `Pada Kabupaten ${kabupaten_value} ada Kecamatan ${kecamatan_value}`;
+    }
+
+    const func_toggle = () => {
+    let toggle_checked = toggle.checked;
+    toggle_checked ? html.setAttribute('data-theme','dark') : html.setAttribute('data-theme','light')
+    }
+    pilihkabupaten.addEventListener('change', func_kabupaten);
+    pilihkecamatan.addEventListener('change', func_kecamatan);
+    toggle.addEventListener('click', func_toggle);
+</script>
+</html>
